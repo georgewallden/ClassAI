@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    /* Language & emit */
+    "target": "ES2022",          // modern syntax
+    "module": "commonjs",        // <- switch to CJS
+    "moduleResolution": "node",  // fix resolveJsonModule clash
+    "rootDir": "src",
+    "outDir": "dist",
+
+    /* Interop */
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    /* Strictness */
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  }
+}
