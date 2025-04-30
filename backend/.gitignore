@@ -1,0 +1,5 @@
+# Dependency installs
+node_modules/
+
+# Build outputs
+dist/
