@@ -8,6 +8,9 @@
     
     COPY tsconfig*.json ./
     COPY src ./src
+    COPY config ./config
+    COPY .sequelizerc ./
+    COPY migrations ./migrations
     RUN npm run build                # creates dist/
     
     # ---------- runtime stage ----------
@@ -15,11 +18,14 @@
     WORKDIR /app
     ENV NODE_ENV=production
     
-    # copy only production deps & built code
     COPY --from=build /app/package*.json ./
     RUN npm ci --omit=dev
     
     COPY --from=build /app/dist ./dist
+    
+    COPY --from=build /app/config ./config
+    COPY --from=build /app/.sequelizerc ./
+    COPY --from=build /app/migrations ./migrations
     
     EXPOSE 3000
     CMD ["node", "dist/app.js"]

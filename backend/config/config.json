@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "classai_root_pw",
+    "database": "classai",
+    "host": "db",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "classai_root_pw",
+    "database": "classai_test",
+    "host": "db",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "classai_root_pw",
+    "database": "classai",
+    "host": "db",
+    "dialect": "mysql"
+  }
+}

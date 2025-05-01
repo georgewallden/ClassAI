@@ -1,0 +1,12 @@
+// backend/.sequelizerc
+const path = require('path');
+module.exports = {
+  // where sequelize-cli looks for its JSON settings
+  'config':           path.resolve('config','config.json'),
+  // where your TS model classes live (relative to backend/)
+  'models-path':      path.resolve('src','models'),
+  // where migrations were generated
+  'migrations-path':  path.resolve('migrations'),
+  // where seeder files go
+  'seeders-path':     path.resolve('seeders'),
+};
