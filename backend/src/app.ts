@@ -1,5 +1,6 @@
 // backend/src/app.ts
 import express, { RequestHandler } from 'express';
+import cors    from 'cors';
 import studentRouter from './routes/students';
 import parentRouter  from './routes/parents';
 import classRouter   from './routes/classes';
@@ -7,6 +8,10 @@ import usageRouter   from './routes/usageLogs';
 import { sequelize } from './models';
 
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:4200'
+}));
+
 app.use(express.json());
 
 // mount routers
