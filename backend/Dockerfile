@@ -11,6 +11,7 @@
     COPY config ./config
     COPY .sequelizerc ./
     COPY migrations ./migrations
+    COPY seeders ./seeders
     RUN npm run build                # creates dist/
     
     # ---------- runtime stage ----------
@@ -26,6 +27,7 @@
     COPY --from=build /app/config ./config
     COPY --from=build /app/.sequelizerc ./
     COPY --from=build /app/migrations ./migrations
+    COPY --from=build /app/seeders ./seeders
     
     EXPOSE 3000
     CMD ["node", "dist/app.js"]

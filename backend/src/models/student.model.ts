@@ -9,8 +9,6 @@ import {
   BelongsToSetAssociationMixin,
 } from 'sequelize';
 import db from '../config/db';
-import Parent from './parent.model';
-import Class from './class.model';
 
 export default class Student extends Model<
   InferAttributes<Student>,
@@ -23,12 +21,6 @@ export default class Student extends Model<
 
   declare parentId: number | null;
   declare classId: number | null;
-
-  // Association mixins
-  declare getParent: BelongsToGetAssociationMixin<Parent>;
-  declare setParent: BelongsToSetAssociationMixin<Parent, number>;
-  declare getClass: BelongsToGetAssociationMixin<Class>;
-  declare setClass: BelongsToSetAssociationMixin<Class, number>;
 }
 
 Student.init(
@@ -47,6 +39,3 @@ Student.init(
   }
 );
 
-// associations
-Student.belongsTo(Parent, { foreignKey: 'parentId', as: 'parent' });
-Student.belongsTo(Class,  { foreignKey: 'classId',  as: 'class' });

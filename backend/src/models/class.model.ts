@@ -8,7 +8,6 @@ import {
   HasManyGetAssociationsMixin,
 } from 'sequelize';
 import db from '../config/db';
-import Student from './student.model';
 
 export default class Class extends Model<
   InferAttributes<Class>,
@@ -17,9 +16,6 @@ export default class Class extends Model<
   declare id: number;
   declare name: string;
   declare teacher: string;
-
-  // Association mixin
-  declare getStudents: HasManyGetAssociationsMixin<Student>;
 }
 
 Class.init(
@@ -35,4 +31,3 @@ Class.init(
   }
 );
 
-Class.hasMany(Student, { foreignKey: 'classId', as: 'students' });
