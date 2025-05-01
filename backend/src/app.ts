@@ -1,4 +1,5 @@
 // backend/src/app.ts
+import 'dotenv/config';
 import express, { RequestHandler } from 'express';
 import cors    from 'cors';
 import studentRouter from './routes/students';
@@ -6,6 +7,7 @@ import parentRouter  from './routes/parents';
 import classRouter   from './routes/classes';
 import usageRouter   from './routes/usageLogs';
 import { sequelize } from './models';
+import chatHandler from './routes/chat';
 
 const app = express();
 app.use(cors({
@@ -19,6 +21,7 @@ app.use('/students',  studentRouter);
 app.use('/parents',   parentRouter);
 app.use('/classes',   classRouter);
 app.use('/usageLogs', usageRouter);
+app.use('/chat', chatHandler);
 
 // health‐check handler as a RequestHandler
 const healthCheck: RequestHandler = (req, res) => {

@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.799.0",
     "@faker-js/faker": "^9.7.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
