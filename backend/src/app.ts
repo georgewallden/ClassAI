@@ -1,13 +1,36 @@
-import express from 'express';
+// backend/src/app.ts
+import express, { RequestHandler } from 'express';
+import studentRouter from './routes/students';
+import parentRouter  from './routes/parents';
+import classRouter   from './routes/classes';
+import usageRouter   from './routes/usageLogs';
+import { sequelize } from './models';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(express.json());
 
-// simple health-check
-app.get('/health', (_, res) => {
+// mount routers
+app.use('/students',  studentRouter);
+app.use('/parents',   parentRouter);
+app.use('/classes',   classRouter);
+app.use('/usageLogs', usageRouter);
+
+// health‐check handler as a RequestHandler
+const healthCheck: RequestHandler = (req, res) => {
   res.json({ status: 'ok' });
-});
+};
 
-app.listen(PORT, () => {
-  console.log(`API listening on port ${PORT}`);
-});
+app.get('/health', healthCheck);
+
+// start server after DB connection is established
+sequelize.authenticate()
+  .then(() => {
+    const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+    app.listen(port, () => {
+      console.log(`API listening on port ${port}`);
+    });
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+    process.exit(1);
+  });
